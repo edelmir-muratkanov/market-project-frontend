@@ -1,0 +1,10 @@
+
+.header {
+  @apply w-full flex items-center justify-between px-[200px] py-3 border-b border-solid border-neutral-300
+  gap-16;
+
+  .logo {
+    @apply h-fit uppercase text-3xl text-black text-center font-bold;
+  }
+}
+

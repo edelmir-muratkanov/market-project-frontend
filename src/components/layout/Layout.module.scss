@@ -1,0 +1,43 @@
+.main {
+  @apply flex flex-col h-full relative;
+  .content {
+    @apply flex relative h-full;
+
+    .wrapper {
+      @apply w-max mx-auto;
+    }
+
+    .sidebar {
+      @apply flex gap-2 flex-col w-80  p-4 border-r border-solid border-neutral-300;
+
+      .back {
+        @apply flex items-center font-medium mb-3;
+
+        > svg {
+          @apply ml-8 text-lg;
+        }
+
+        > span {
+          @apply ml-4 uppercase;
+          letter-spacing: .2rem;
+        }
+      }
+
+      > a {
+        @apply w-full px-4 py-3 rounded-lg transition-colors duration-300;
+
+        > span {
+          @apply whitespace-nowrap text-left;
+        }
+
+        &:hover {
+          @apply bg-primary text-white;
+        }
+      }
+    }
+
+    .wrapper {
+      @apply pl-6 pr-8 pt-6;
+    }
+  }
+}

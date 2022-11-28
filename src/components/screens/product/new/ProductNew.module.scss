@@ -1,0 +1,17 @@
+.wrapper {
+  @apply w-[800px] mx-auto;
+
+  h1 {
+    @apply mx-auto w-fit text-xl mb-6;
+  }
+
+  .form {
+    .button {
+      @apply mt-6 bg-primary py-3 cursor-pointer duration-300;
+
+      &:active {
+        @apply bg-primary brightness-75;
+      }
+    }
+  }
+}

@@ -1,0 +1,18 @@
+
+.editor {
+  @apply relative text-[14px] block mt-6 px-4 py-2 shadow bg-white rounded-lg;
+
+  > textarea {
+    @apply w-full resize-none text-lg outline-0 duration-300;
+    min-height: 150px;
+  }
+
+  &:focus-within {
+    @apply shadow-lg;
+  }
+}
+
+.error {
+  @apply text-primary mt-1 ;
+  font-size: .75rem;
+}

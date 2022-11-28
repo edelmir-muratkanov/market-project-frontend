@@ -1,0 +1,30 @@
+.search {
+  @apply relative w-full;
+
+  > label {
+    @apply block flex items-center shadow rounded-lg border-2 cursor-pointer duration-300;
+
+    &:focus-within {
+      @apply border-primary;
+    }
+
+    input {
+      @apply rounded-md py-2 px-4 w-full h-full block outline-0 border-0 text-lg;
+    }
+
+    svg {
+      @apply opacity-90 ml-4;
+    }
+  }
+
+
+  .result {
+    @apply flex flex-wrap absolute z-20 p-5 mt-3 w-full shadow-lg rounded-lg bg-white;
+    left: 0;
+
+    > div {
+      @apply mr-4 last:mr-0;
+      width: 23%;
+    }
+  }
+}

@@ -1,0 +1,20 @@
+.input {
+  @apply relative shadow py-2 px-4 rounded-lg bg-white duration-300;
+
+  > label {
+    @apply w-full items-center bg-inherit block text-opacity-70 text-[14px] my-1 ;
+
+    > input {
+      @apply w-full bg-transparent p-0  outline-0 border-0 text-lg my-1;
+    }
+  }
+
+  &:focus-within {
+    @apply shadow-lg;
+  }
+
+  .error {
+    @apply text-primary bg-inherit mt-1 ;
+    font-size: .75rem;
+  }
+}
