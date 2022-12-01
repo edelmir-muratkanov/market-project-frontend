@@ -15,13 +15,8 @@ export const Home: FC = ({}) => {
 	return (
 		<Layout isSidebar={true} title='Главная'>
 			{data?.map(product => (
-				<div>{product.title}</div>
+				<div key={product.id}>{product.title}</div>
 			))}
-			{Array(100)
-				.fill(null)
-				.map(_ => (
-					<div>H</div>
-				))}
 		</Layout>
 	)
 }

@@ -24,6 +24,8 @@ export const ProductNew: FC = () => {
 		console.log(data)
 	}
 
+	console.log(errors)
+
 	return (
 		<Layout isSidebar={false} title='Подать объявление'>
 			<div className={styles.wrapper}>
@@ -49,9 +51,15 @@ export const ProductNew: FC = () => {
 					/>
 					<CategoryList
 						{...register('category.id', {
-							min: 1
+							required: 'Обязательное поле',
+							min: {
+								value: 1,
+								message: 'Обязательное поле'
+							}
 						})}
 						labelName='Выберите категорию'
+						type='number'
+						error={errors.category?.id}
 					/>
 
 					<Button className={styles.button}>Подать объявление</Button>

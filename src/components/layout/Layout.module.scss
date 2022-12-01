@@ -1,14 +1,11 @@
 .main {
-  @apply flex flex-col h-full relative;
+  @apply flex flex-col h-full w-full relative;
   .content {
     @apply flex relative h-full;
 
-    .wrapper {
-      @apply w-max mx-auto;
-    }
 
     .sidebar {
-      @apply flex gap-2 flex-col w-80  p-4 border-r border-solid border-neutral-300;
+      @apply flex flex-shrink-0 flex-grow-0 flex-col w-80 h-full gap-2 p-4 border-r border-solid border-neutral-300;
 
       .back {
         @apply flex items-center font-medium mb-3;
@@ -37,7 +34,10 @@
     }
 
     .wrapper {
-      @apply pl-6 pr-8 pt-6;
+      @apply flex flex-col flex-grow overflow-y-auto w-max mx-auto pl-6 pr-8 pt-6;
+      &::-webkit-scrollbar {
+        display: none;
+      }
     }
   }
 }
