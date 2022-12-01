@@ -2,6 +2,7 @@ import { FC } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 
 import { CategoryList } from '@/screens/product/new/category-list/CategoryList'
+import Price from '@/screens/product/new/price/Price'
 import { IProductFields } from '@/screens/product/new/product-new.interface'
 
 import { Button } from '@/ui/button/Button'
@@ -61,6 +62,8 @@ export const ProductNew: FC = () => {
 						type='number'
 						error={errors.category?.id}
 					/>
+
+					<Price />
 
 					<Button className={styles.button}>Подать объявление</Button>
 				</form>
