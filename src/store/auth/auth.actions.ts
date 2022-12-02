@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { toastr } from 'react-redux-toastr'
 
-import { IAuthFields } from '@/screens/auth/auth-form.interface'
+import { IAuthFields } from '@/shared/interfaces/auth.interface'
 
 import { IAuthData } from '@/services/auth/auth.helper'
 import { AuthService } from '@/services/auth/auth.service'

@@ -1,6 +1,6 @@
 import { NextPage } from 'next'
 
-import { AuthForm } from '@/screens/auth/AuthForm'
+import { Auth } from '@/screens/Auth'
 
 import { Meta } from '@/utils/Meta/Meta'
 
@@ -8,7 +8,7 @@ const SignUpPage: NextPage = () => {
 	return (
 		<>
 			<Meta title='Регистрация' />
-			<AuthForm type='register' />
+			<Auth type='register' />
 		</>
 	)
 }

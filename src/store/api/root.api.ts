@@ -4,12 +4,12 @@ import { IUser } from '@/shared/interfaces/user.interface'
 
 import { USER } from '@/services/user.service'
 
+import { API_URL } from '@/utils/api/axios.api'
+
 import { TypeRootState } from '@/store/store'
 
-import { API_URL } from '../../api/axios'
-
-export const api = createApi({
-	reducerPath: 'api',
+export const rootApi = createApi({
+	reducerPath: 'rootApi',
 	tagTypes: ['Profile', 'Product'],
 
 	baseQuery: fetchBaseQuery({

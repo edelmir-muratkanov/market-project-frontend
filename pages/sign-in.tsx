@@ -1,6 +1,6 @@
 import { NextPage } from 'next'
 
-import { AuthForm } from '@/screens/auth/AuthForm'
+import { Auth } from '@/screens/Auth'
 
 import { Meta } from '@/utils/Meta/Meta'
 
@@ -8,7 +8,7 @@ const SignInPage: NextPage = () => {
 	return (
 		<>
 			<Meta title='Авторизация' />
-			<AuthForm type='login' />
+			<Auth type='login' />
 		</>
 	)
 }

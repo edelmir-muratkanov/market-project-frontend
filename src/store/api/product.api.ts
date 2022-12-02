@@ -2,9 +2,9 @@ import { IProduct, IProductDto } from '@/shared/interfaces/product.interface'
 
 import { PRODUCT } from '@/services/product.service'
 
-import { api } from '@/store/api/api'
+import { rootApi } from '@/store/api/root.api'
 
-export const productApi = api.injectEndpoints({
+export const productApi = rootApi.injectEndpoints({
 	endpoints: build => ({
 		getProductBySearchTerm: build.query<IProduct[], string>({
 			query: searchTerm => ({ url: `/${PRODUCT}`, params: { searchTerm } })

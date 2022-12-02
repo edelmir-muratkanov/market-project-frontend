@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
 import { FC, PropsWithChildren } from 'react'
 
-import { useAuth } from '@/hooks/useAuth'
+import { useAuth } from '@/shared/hooks/useAuth'
 
 import { TypeComponentAuthFields } from '@/providers/private-route.interface'
 

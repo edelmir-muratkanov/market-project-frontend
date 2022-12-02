@@ -1,6 +1,6 @@
 import { IAuthData } from '@/services/auth/auth.helper'
 
-import { axiosClassic } from '../../api/axios'
+import { axiosClassic } from '@/utils/api/axios.api'
 
 const AUTH = 'auth'
 

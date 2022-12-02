@@ -1,6 +1,6 @@
 import { IProduct } from '@/shared/interfaces/product.interface'
 
-import { axiosClassic } from '../api/axios'
+import { axiosClassic } from '@/utils/api/axios.api'
 
 export const PRODUCT = 'product'
 

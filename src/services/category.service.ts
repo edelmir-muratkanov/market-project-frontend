@@ -1,6 +1,6 @@
 import { ICategory } from '@/shared/interfaces/category.interface'
 
-import { axiosClassic } from '../api/axios'
+import { axiosClassic } from '@/utils/api/axios.api'
 
 export const CATEGORY = 'category'
 
