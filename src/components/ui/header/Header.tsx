@@ -1,45 +1,34 @@
 import AccountIcon from '@mui/icons-material/AccountCircle'
-import SearchIcon from '@mui/icons-material/Search'
 import { AppBar, Box, Container, IconButton, Toolbar } from '@mui/material'
 import { useRouter } from 'next/router'
 import { FC } from 'react'
-
-import { Link } from '@/ui/Link'
 
 import { useAuth } from '@/shared/hooks'
 
 import { Button } from '../Button'
 
-import { Search, SearchIconWrapper, StyledInputBase } from './Search'
+import { Logo } from './Logo'
+import { Search } from './search/Search'
+import { useSearch } from './search/useSearch'
 
 export const Header: FC = ({}) => {
 	const { user } = useAuth()
+	const { searchTerm, handleSearch, isSuccess, data } = useSearch()
 	const router = useRouter()
 
 	const menuId = 'menu'
 
 	return (
-		<AppBar variant='outlined' color='transparent' position='sticky'>
+		<AppBar
+			variant='outlined'
+			elevation={0}
+			color='transparent'
+			position='sticky'
+		>
 			<Container maxWidth='lg'>
 				<Toolbar disableGutters>
-					<Link
-						underline='none'
-						color='black'
-						href='/'
-						variant='h4'
-						fontWeight='bold'
-					>
-						MARKET
-					</Link>
-					<Search>
-						<SearchIconWrapper>
-							<SearchIcon />
-						</SearchIconWrapper>
-						<StyledInputBase
-							placeholder='Поиск...'
-							inputProps={{ 'aria-label': 'search' }}
-						/>
-					</Search>
+					<Logo />
+					<Search />
 					{!user ? (
 						<Box>
 							<Button variant='outlined' href='/sign-in'>
@@ -64,6 +53,7 @@ export const Header: FC = ({}) => {
 								}}
 								size='small'
 								variant='outlined'
+								onClick={() => router.push('/p/new')}
 							>
 								Подать заявление
 							</Button>
