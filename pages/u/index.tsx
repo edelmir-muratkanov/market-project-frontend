@@ -1,4 +1,4 @@
-import { Profile } from '@/screens/profile/Profile'
+import { Profile } from '@/screens/Profile'
 
 import { NextPageAuth } from '@/providers/private-route.interface'
 

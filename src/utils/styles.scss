@@ -4,6 +4,10 @@
 
 @import "react-redux-toastr/src/styles/index.scss";
 
+body {
+    margin: 0;
+}
+
 .toastr {
     @apply shadow;
 }
@@ -11,3 +15,4 @@
 .toastr .rrt-holder {
     @apply flex justify-center items-center;
 }
+

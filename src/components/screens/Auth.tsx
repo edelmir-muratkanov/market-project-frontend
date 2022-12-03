@@ -71,6 +71,9 @@ export const Auth: FC<{ type: 'login' | 'register' }> = ({ type }) => {
 					helperText={errors?.email?.message}
 				/>
 				<Input
+					sx={{
+						borderRadius: '12px'
+					}}
 					id='password'
 					label='Password'
 					type='password'
