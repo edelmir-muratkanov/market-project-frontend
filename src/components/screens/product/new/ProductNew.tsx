@@ -1,7 +1,7 @@
 import { yupResolver } from '@hookform/resolvers/yup'
 import { Box, Container, Paper, Stack, Typography } from '@mui/material'
 import { parsePhoneNumberFromString } from 'libphonenumber-js'
-import { FC } from 'react'
+import { ChangeEvent, FC } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import * as yup from 'yup'
 
@@ -57,10 +57,10 @@ export const ProductNew: FC = ({}) => {
 	})
 
 	const normalizePhoneNumber = (value: string) => {
-		const phoneNumber = parsePhoneNumberFromString(value)
+		const phoneNumber = parsePhoneNumberFromString(value, 'KZ')
 		if (!phoneNumber) return value
 
-		return phoneNumber.formatInternational()
+		return phoneNumber.formatNational()
 	}
 	console.log(errors)
 
@@ -107,6 +107,20 @@ export const ProductNew: FC = ({}) => {
 								{...register('description')}
 								rows={4}
 								multiline
+								required
+							/>
+
+							<Input
+								id='phone'
+								type='tel'
+								label='Телефон'
+								error={!!errors.phone}
+								helperText={errors?.phone?.message}
+								placeholder='+7 (700) 000 0000'
+								{...register('phone')}
+								onChange={(event: ChangeEvent<HTMLInputElement>) => {
+									event.target.value = normalizePhoneNumber(event.target.value)
+								}}
 								required
 							/>
 
