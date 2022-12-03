@@ -98,6 +98,18 @@ export const ProductNew: FC = ({}) => {
 								required
 							/>
 
+							<Input
+								id='description'
+								type='text'
+								label='Описание'
+								error={!!errors.description}
+								helperText={errors?.description?.message}
+								{...register('description')}
+								rows={4}
+								multiline
+								required
+							/>
+
 							<PriceSelect
 								controlForm={control}
 								error={!!errors.price}
