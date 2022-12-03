@@ -1,5 +1,6 @@
 import createCache from '@emotion/cache'
 import { CacheProvider } from '@emotion/react'
+import { CssBaseline } from '@mui/material'
 import { StyledEngineProvider } from '@mui/material/styles'
 import type { AppProps } from 'next/app'
 import NextProgressBar from 'nextjs-progressbar'
@@ -39,6 +40,7 @@ function App({ Component, pageProps }: TypeAppProps) {
 						<PersistGate persistor={persistor} loading={null}>
 							<QueryClientProvider client={queryClient}>
 								<AuthProvider Component={Component}>
+									<CssBaseline />
 									<Component {...pageProps} />
 									<ReduxToastrLib
 										newestOnTop={false}

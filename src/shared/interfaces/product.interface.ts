@@ -14,8 +14,14 @@ export interface IProduct extends IBase {
 	category: ICategory
 }
 
-export interface IProductDto
-	extends Pick<
-		IProduct,
-		'id' | 'title' | 'description' | 'isPublished' | 'images'
-	> {}
+export interface IProductFields {
+	title: string
+	price: string
+	description: string
+	phone: string
+	address: string
+	category: {
+		id: number
+	}
+	images?: File[]
+}

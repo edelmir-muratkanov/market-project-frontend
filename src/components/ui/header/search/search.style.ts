@@ -1,14 +1,15 @@
 import { InputBase, alpha, styled } from '@mui/material'
 
-export const Search = styled('div')(({ theme }) => ({
+export const SearchBarWrapper = styled('div')(({ theme }) => ({
 	position: 'relative',
 	borderRadius: theme.shape.borderRadius,
+	marginX: '3rem',
+	width: '100%',
+
 	'&:hover .MuiInputBase-input': {
 		backgroundColor: alpha(theme.palette.primary.dark, 0.15)
 	},
-	marginRight: '3rem',
-	marginLeft: '3rem',
-	width: '100%',
+
 	[theme.breakpoints.down('sm')]: {
 		marginLeft: theme.spacing(3),
 		width: 'auto'

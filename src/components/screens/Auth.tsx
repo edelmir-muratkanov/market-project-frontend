@@ -1,5 +1,5 @@
 import { yupResolver } from '@hookform/resolvers/yup'
-import { Box, Container, CssBaseline, Link, Typography } from '@mui/material'
+import { Box, Container, Link, Typography } from '@mui/material'
 import { useRouter } from 'next/router'
 import { FC, useEffect } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
@@ -54,7 +54,6 @@ export const Auth: FC<{ type: 'login' | 'register' }> = ({ type }) => {
 				alignItems: 'center'
 			}}
 		>
-			<CssBaseline />
 			<Typography component='h1' variant='h5'>
 				Войти
 			</Typography>

@@ -30,6 +30,7 @@ export const Subheader: FC<{ id?: number }> = ({ id }) => {
 				{categories &&
 					categories.map(category => (
 						<ListItemButton
+							key={category.name}
 							sx={{
 								justifyContent: 'center',
 								whiteSpace: 'nowrap'

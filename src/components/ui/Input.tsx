@@ -1,7 +1,5 @@
 import { TextField, TextFieldProps } from '@mui/material'
-import { InputHTMLAttributes, forwardRef } from 'react'
-
-type Props = InputHTMLAttributes<HTMLInputElement>
+import { forwardRef } from 'react'
 
 export const Input = forwardRef<HTMLInputElement, TextFieldProps>(
 	(props, ref) => {
