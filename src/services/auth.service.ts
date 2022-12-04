@@ -1,4 +1,4 @@
-import { IAuthData } from '@/services/auth/auth.helper'
+import { IAuthData } from '@/shared/interfaces'
 
 import { axiosClassic } from '@/utils/api/axios.api'
 

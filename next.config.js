@@ -4,7 +4,9 @@ const nextConfig = {
 	swcMinify: true,
 	poweredByHeader: false,
 	env: {
-		APP_URL: process.env.REACT_APP_URL
+		APP_URL: process.env.REACT_APP_URL,
+		GOOGLE_MAP_KEY: process.env.GOOGLE_MAP_KEY,
+		YANDEX_MAP_KEY: process.env.YANDEX_MAP_KEY.toString()
 	},
 	images: {
 		domains: ['localhost']

@@ -1,8 +1,8 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
-import { IUser } from '@/shared/interfaces/user.interface'
+import { IUser } from '@/shared/interfaces'
 
-import { USER } from '@/services/user.service'
+import { USER } from '@/services/index'
 
 import { API_URL } from '@/utils/api/axios.api'
 
@@ -23,17 +23,25 @@ export const rootApi = createApi({
 	}),
 
 	endpoints: builder => ({
-		getProfile: builder.query<IUser, any>({
-			query: () => ({ url: `${USER}/me` }),
-			providesTags: (result, error) => [{ type: 'Profile' }]
+		getProfile: builder.query<IUser, { id: number }>({
+			query: id => ({
+				url: `${USER}/${id}`
+			}),
+			providesTags: (result, error, arg) => [{ type: 'Profile', id: arg.id }]
 		}),
 
-		changeProfile: builder.mutation<IUser, null>({
-			query: user => ({
+		getPrivateProfile: builder.query<IUser, any>({
+			query: () => ({ url: `${USER}/me` }),
+			providesTags: () => [{ type: 'Profile' }]
+		}),
+
+		changeProfile: builder.mutation<IUser, IUser>({
+			query: body => ({
 				url: `/${USER}/me`,
-				method: 'PUT'
+				method: 'PUT',
+				body
 			}),
-			invalidatesTags: () => [{ type: 'Profile' }]
+			invalidatesTags: (result, error, arg) => [{ type: 'Profile', id: arg.id }]
 		})
 	})
 })

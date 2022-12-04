@@ -3,9 +3,9 @@ import Link from 'next/link'
 import { FC, useEffect, useState } from 'react'
 import { useQuery } from 'react-query'
 
-import { ICategory } from '@/shared/interfaces/category.interface'
+import { ICategory } from '@/shared/interfaces'
 
-import { CategoryService } from '@/services/category.service'
+import { CategoryService } from '@/services/index'
 
 export const Subheader: FC<{ id?: number }> = ({ id }) => {
 	const { data } = useQuery<ICategory[] | ICategory>('categories', async () => {

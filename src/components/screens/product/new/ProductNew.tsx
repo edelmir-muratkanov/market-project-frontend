@@ -1,48 +1,27 @@
 import { yupResolver } from '@hookform/resolvers/yup'
-import { Box, Container, Paper, Stack, Typography } from '@mui/material'
-import { parsePhoneNumberFromString } from 'libphonenumber-js'
-import { ChangeEvent, FC } from 'react'
+import {
+	Box,
+	CircularProgress,
+	Container,
+	Paper,
+	Stack,
+	Typography
+} from '@mui/material'
+import { ChangeEvent, FC, useEffect } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
-import * as yup from 'yup'
+import { toastr } from 'react-redux-toastr'
 
-import { CategorySelect } from '@/screens/product/new/CategorySelect'
-import { PriceSelect } from '@/screens/product/new/PriceSelect'
+import { Button, FileInput, Form, Input, Logo } from '@/ui/index'
 
-import { Button } from '@/ui/Button'
-import { Form } from '@/ui/Form'
-import { Input } from '@/ui/Input'
-import { Logo } from '@/ui/header/Logo'
+import { IProductFields } from '@/shared/interfaces'
 
-import { IProductFields } from '@/shared/interfaces/product.interface'
+import { normalizePhoneNumber } from '@/utils/phone.utils'
 
-const schema = yup.object().shape({
-	title: yup
-		.string()
-		.trim()
-		.required('Обязательное поле')
-		.min(5, 'Минимум 5 символов'),
-	description: yup
-		.string()
-		.trim()
-		.required('Обязательное поле')
-		.min(20, 'Минимум 20 символов')
-		.max(500, 'Максимум 500 символов'),
-	address: yup
-		.string()
-		.trim()
-		.required('Обязательное поле')
-		.max(70, 'Максимум 70 знаков'),
-	phone: yup.string().trim().required('Обязательное поле'),
-	price: yup
-		.string()
-		.trim()
-		.min(1, 'Обязательное поле')
-		.required('Обязательное поле'),
-	category: yup.object({
-		id: yup.number().min(1, 'Выберите категорию').required('Обязательное поле')
-	}),
-	images: yup.array()
-})
+import { productApi } from '@/store/api'
+
+import { CategorySelect } from './CategorySelect'
+import { PriceSelect } from './PriceSelect'
+import { schema } from './product-new.validation'
 
 export const ProductNew: FC = ({}) => {
 	const {
@@ -50,29 +29,44 @@ export const ProductNew: FC = ({}) => {
 		register,
 		handleSubmit,
 		setValue,
+		reset,
 		formState: { errors }
 	} = useForm<IProductFields>({
-		mode: 'onBlur',
+		mode: 'onChange',
 		resolver: yupResolver(schema)
 	})
 
-	const normalizePhoneNumber = (value: string) => {
-		const phoneNumber = parsePhoneNumberFromString(value, 'KZ')
-		if (!phoneNumber) return value
+	const [createVideo, { isLoading, isSuccess }] =
+		productApi.useCreateProductMutation()
 
-		return phoneNumber.formatNational()
-	}
-	console.log(errors)
+	useEffect(() => {
+		if (isSuccess) {
+			toastr.success('Успешно', 'Вы успешно добавили объявление')
+			reset({
+				title: '',
+				address: '',
+				description: '',
+				category: {
+					id: 0
+				},
+				price: 'Договорная',
+				phone: '',
+				images: []
+			})
+		}
+	}, [isSuccess])
 
 	const onSubmit: SubmitHandler<IProductFields> = data => {
-		console.log(data)
+		createVideo(data)
 	}
+
+	if (isLoading) return <CircularProgress />
 
 	return (
 		<Container
-			maxWidth='lg'
+			maxWidth='md'
 			sx={{
-				paddingTop: '2rem',
+				paddingY: '2rem',
 				display: 'flex',
 				flexDirection: 'column',
 				alignItems: 'start'
@@ -84,7 +78,7 @@ export const ProductNew: FC = ({}) => {
 					Подать объявление бесплатно
 				</Typography>
 			</Box>
-			<Box marginTop='3rem' width='40rem'>
+			<Box marginTop='3rem' width='100%'>
 				<Form onSubmit={handleSubmit(onSubmit)}>
 					<Paper elevation={2} sx={{ padding: 2, width: '100%' }}>
 						<Stack spacing={4} alignItems='baseline'>
@@ -116,7 +110,7 @@ export const ProductNew: FC = ({}) => {
 								label='Телефон'
 								error={!!errors.phone}
 								helperText={errors?.phone?.message}
-								placeholder='+7 (700) 000 0000'
+								placeholder='(700) 000 0000'
 								{...register('phone')}
 								onChange={(event: ChangeEvent<HTMLInputElement>) => {
 									event.target.value = normalizePhoneNumber(event.target.value)
@@ -124,17 +118,30 @@ export const ProductNew: FC = ({}) => {
 								required
 							/>
 
+							<Input
+								label='Адрес'
+								error={!!errors.address}
+								helperText={errors?.address?.message}
+								placeholder='Введите адрес'
+								{...register('address')}
+								required
+							/>
+
 							<PriceSelect
 								controlForm={control}
 								error={!!errors.price}
 								helpText={errors?.price?.message}
+								setValue={setValue}
 							/>
+
 							<CategorySelect
 								error={!!errors.category?.id}
 								helpText={errors?.category?.id?.message}
 								control={control}
 								setValue={setValue}
 							/>
+
+							<FileInput control={control} />
 
 							<Button type='submit'>Создать</Button>
 						</Stack>

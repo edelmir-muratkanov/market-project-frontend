@@ -1,5 +1,5 @@
 import { FC } from 'react'
 
-export const Profile: FC = ({}) => {
+export const Category: FC = ({}) => {
 	return <div></div>
 }

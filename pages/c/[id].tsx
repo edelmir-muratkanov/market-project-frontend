@@ -1,6 +1,6 @@
 import { NextPage } from 'next'
 
-import { Category } from '@/screens/home/Category'
+import { Category } from '@/screens/category/Category'
 
 const CategoryPage: NextPage = () => {
 	return <Category />

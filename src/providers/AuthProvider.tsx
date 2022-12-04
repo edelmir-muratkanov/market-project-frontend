@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic'
 import { FC, PropsWithChildren } from 'react'
 
-import { TypeComponentAuthFields } from '@/providers/private-route.interface'
+import { TypeComponentAuthFields } from '@/shared/interfaces/private-route.interface'
 
 const DynamicCheckRole = dynamic(
 	() => import('./CheckRole').then(mod => mod.CheckRole),

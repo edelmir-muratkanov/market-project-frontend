@@ -1,8 +1,7 @@
 import { Container } from '@mui/material'
 import { FC } from 'react'
 
-import { Header } from '@/ui/header/Header'
-import { Subheader } from '@/ui/header/Subheader'
+import { Header, Subheader } from '@/ui/index'
 
 export const Home: FC = ({}) => {
 	return (

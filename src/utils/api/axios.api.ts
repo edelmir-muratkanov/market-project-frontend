@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-import { getContentType } from '@/utils/api.utils'
+import { getContentType } from './api.utils'
 
 export const API_URL = `${process.env.APP_URL}/api`
 

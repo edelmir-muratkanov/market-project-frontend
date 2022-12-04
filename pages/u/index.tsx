@@ -1,6 +1,6 @@
-import { Profile } from '@/screens/Profile'
+import { Profile } from '@/screens/user/Profile'
 
-import { NextPageAuth } from '@/providers/private-route.interface'
+import { NextPageAuth } from '@/shared/interfaces'
 
 const ProfilePage: NextPageAuth = ({}) => {
 	return <Profile />
