@@ -1,14 +1,14 @@
 import SearchIcon from '@mui/icons-material/Search'
 import { Box, Stack, Typography, useTheme } from '@mui/material'
 
+import { useOutside } from '@/shared/hooks'
+
 import {
 	SearchBarWrapper,
 	SearchIconWrapper,
 	StyledInputBase
-} from '@/ui/header/search/search.style'
-import { useSearch } from '@/ui/header/search/useSearch'
-
-import { useOutside } from '@/shared/hooks'
+} from './search.style'
+import { useSearch } from './useSearch'
 
 export const Search = () => {
 	const { data, isSuccess, handleSearch, searchTerm } = useSearch()

@@ -1,7 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-import { login, logout, register } from '@/store/auth/auth.actions'
-import { IAuthInitialState } from '@/store/auth/auth.interface'
+import { IAuthInitialState } from '@/shared/interfaces'
+
+import { login, logout, register } from './auth.actions'
 
 const initialState: IAuthInitialState = {
 	user: null,

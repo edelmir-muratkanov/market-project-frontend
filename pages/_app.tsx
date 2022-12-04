@@ -9,8 +9,9 @@ import { Provider } from 'react-redux'
 import ReduxToastrLib from 'react-redux-toastr'
 import { PersistGate } from 'redux-persist/integration/react'
 
-import { AuthProvider } from '@/providers/AuthProvider'
-import { TypeComponentAuthFields } from '@/providers/private-route.interface'
+import { TypeComponentAuthFields } from '@/shared/interfaces'
+
+import { AuthProvider } from '@/providers/index'
 
 import '@/utils/styles.scss'
 

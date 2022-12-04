@@ -5,9 +5,7 @@ import { FC, useEffect } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import * as yup from 'yup'
 
-import { Button } from '@/ui/Button'
-import { Form } from '@/ui/Form'
-import { Input } from '@/ui/Input'
+import { Button, Form, Input } from '@/ui/index'
 
 import { useActions, useAuth } from '@/shared/hooks'
 import { IAuthFields } from '@/shared/interfaces/auth.interface'

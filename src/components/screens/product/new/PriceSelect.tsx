@@ -4,68 +4,73 @@ import {
 	FormHelperText,
 	FormLabel,
 	Radio,
-	RadioGroup,
-	TextField
+	RadioGroup
 } from '@mui/material'
-import { ChangeEvent, FC, useState } from 'react'
-import { Control, Controller } from 'react-hook-form'
+import { ChangeEvent, FC, useRef } from 'react'
+import { Control, Controller, UseFormSetValue } from 'react-hook-form'
 
-import { IProductFields } from '@/shared/interfaces/product.interface'
+import { Input } from '@/ui/Input'
+
+import { IProductFields } from '@/shared/interfaces'
+
+const TRADE = 'Договорная'
+const FREE = 'Даром'
 
 export const PriceSelect: FC<{
 	controlForm: Control<IProductFields, any>
 	error: boolean
 	helpText?: string
-}> = ({ controlForm, error, helpText }) => {
-	const [price, setPrice] = useState('')
-	const [check, setCheck] = useState(1)
-
-	const handleInputPrice = (event: ChangeEvent<HTMLInputElement>) => {
-		setPrice(event.target.value)
-	}
+	setValue: UseFormSetValue<IProductFields>
+}> = ({ controlForm, error, helpText, setValue }) => {
+	const ref = useRef<HTMLInputElement>()
 
 	return (
 		<FormControl error={error} aria-errormessage={helpText}>
 			<FormLabel>Цена</FormLabel>
 			<Controller
 				rules={{ required: true }}
-				name={'price'}
-				defaultValue=''
+				name='price'
+				defaultValue={TRADE}
 				control={controlForm}
-				render={({ field }) => (
-					<RadioGroup
-						{...field}
-						aria-required={true}
-						aria-errormessage={helpText}
-					>
-						<FormControlLabel
-							checked={check == 1}
-							value={price}
-							control={<Radio />}
-							label={
-								<TextField
-									type='number'
-									size='small'
-									onFocus={() => setCheck(1)}
-									label='Цена в тенге'
-									variant='outlined'
-									// onChange={handleInputPrice}
-								/>
-							}
-						/>
-						<FormControlLabel
-							checked={check == 2}
-							value='Договорная'
-							control={<Radio onFocus={() => setCheck(2)} />}
-							label='Договорная'
-						/>
-						<FormControlLabel
-							checked={check == 3}
-							value='Даром'
-							control={<Radio onFocus={() => setCheck(3)} />}
-							label='Даром'
-						/>
-					</RadioGroup>
+				render={({ field: { onChange, value } }) => (
+					<>
+						<input type='hidden' value={value} onChange={onChange} />
+						<RadioGroup>
+							<FormControlLabel
+								checked={value == TRADE}
+								value={TRADE}
+								control={<Radio onClick={() => setValue('price', TRADE)} />}
+								label={TRADE}
+							/>
+							<FormControlLabel
+								checked={value == FREE}
+								onChange={onChange}
+								value={FREE}
+								control={<Radio onClick={() => setValue('price', FREE)} />}
+								label={FREE}
+							/>
+							<FormControlLabel
+								checked={value != TRADE && value != FREE}
+								control={
+									<Radio
+										onClick={() => setValue('price', ref?.current?.value!)}
+									/>
+								}
+								label={
+									<Input
+										required
+										placeholder='Цена в тенге'
+										inputRef={ref}
+										value={value == TRADE || value == FREE ? '' : value}
+										onClick={() => setValue('price', '')}
+										onChange={(e: ChangeEvent<HTMLInputElement>) =>
+											setValue('price', e.target.value)
+										}
+									/>
+								}
+							/>
+						</RadioGroup>
+					</>
 				)}
 			/>
 			<FormHelperText>{helpText}</FormHelperText>

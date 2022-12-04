@@ -2,7 +2,7 @@ import { NextPage } from 'next'
 
 import { Auth } from '@/screens/Auth'
 
-import { Meta } from '@/utils/Meta/Meta'
+import { Meta } from '@/utils/meta/Meta'
 
 const SignInPage: NextPage = () => {
 	return (

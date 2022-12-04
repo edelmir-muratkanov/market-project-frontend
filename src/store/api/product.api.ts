@@ -1,8 +1,8 @@
-import { IProduct, IProductDto } from '@/shared/interfaces/product.interface'
+import { IProduct, IProductFields } from '@/shared/interfaces'
 
-import { PRODUCT } from '@/services/product.service'
+import { PRODUCT } from '@/services/index'
 
-import { rootApi } from '@/store/api/root.api'
+import { rootApi } from './root.api'
 
 export const productApi = rootApi.injectEndpoints({
 	endpoints: build => ({
@@ -10,27 +10,28 @@ export const productApi = rootApi.injectEndpoints({
 			query: searchTerm => ({ url: `/${PRODUCT}`, params: { searchTerm } })
 		}),
 
-		getProduct: build.query<IProduct, number>({
-			query: id => `${PRODUCT}/${id}`,
+		getProductById: build.query<IProduct, number>({
+			query: id => `/${PRODUCT}/${id}`,
 			providesTags: (result, error, id) => [{ type: 'Product', id }]
 		}),
 
-		createProduct: build.mutation<string, void>({
-			query: () => ({
+		createProduct: build.mutation<IProduct, IProductFields>({
+			query: body => ({
 				url: `/${PRODUCT}`,
-				method: 'POST'
+				method: 'POST',
+				body
 			}),
 			invalidatesTags: () => [{ type: 'Product' }]
 		}),
 
-		updateProduct: build.mutation<IProduct, IProductDto>({
+		updateProduct: build.mutation<IProduct, IProductFields & { id: number }>({
 			query: ({ id, ...body }) => ({
 				url: `/${PRODUCT}/${id}`,
-				method: 'POST',
+				method: 'PUT',
 				body
 			}),
-			invalidatesTags: (result, error, { id }) => [
-				{ type: 'Product', id },
+			invalidatesTags: (result, error, { id: productId }) => [
+				{ type: 'Product', id: productId },
 				{ type: 'Profile' }
 			]
 		}),

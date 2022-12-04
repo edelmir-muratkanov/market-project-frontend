@@ -2,7 +2,7 @@ import { ChangeEvent, useState } from 'react'
 
 import { useDebounce } from '@/shared/hooks'
 
-import { productApi } from '@/store/api/product.api'
+import { productApi } from '@/store/api'
 
 export const useSearch = () => {
 	const [searchTerm, setSearchTerm] = useState('')

@@ -12,9 +12,10 @@ import {
 // @ts-ignore
 import storage from 'redux-persist/lib/storage'
 
-import { rootApi } from '@/store/api/root.api'
-import { rtkQueryErrorLogger } from '@/store/middleware/error.middleware'
-import { rootReducer } from '@/store/root.reducer'
+import { rootApi } from '@/store/api'
+
+import { rtkQueryErrorLogger } from './middleware/error.middleware'
+import { rootReducer } from './root.reducer'
 
 const persistConfig = {
 	key: 'root',

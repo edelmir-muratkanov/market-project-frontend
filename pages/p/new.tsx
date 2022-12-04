@@ -1,6 +1,6 @@
 import { ProductNew } from '@/screens/product/new/ProductNew'
 
-import { NextPageAuth } from '@/providers/private-route.interface'
+import { NextPageAuth } from '@/shared/interfaces'
 
 const ProductCreatePage: NextPageAuth = () => {
 	return <ProductNew />

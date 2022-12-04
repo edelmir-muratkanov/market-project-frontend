@@ -9,11 +9,9 @@ import { Button } from '../Button'
 
 import { Logo } from './Logo'
 import { Search } from './search/Search'
-import { useSearch } from './search/useSearch'
 
 export const Header: FC = ({}) => {
 	const { user } = useAuth()
-	const { searchTerm, handleSearch, isSuccess, data } = useSearch()
 	const router = useRouter()
 
 	const menuId = 'menu'

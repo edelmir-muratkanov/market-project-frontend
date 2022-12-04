@@ -1,15 +1,15 @@
 // @ts-ignore
-import { Menu, MenuItem } from '@mui/material'
+import { Menu, MenuItem, Typography } from '@mui/material'
 import { NestedMenuItem } from 'mui-nested-menu'
 import { FC, MouseEvent, useState } from 'react'
 import { Control, Controller, UseFormSetValue } from 'react-hook-form'
 import { useQuery } from 'react-query'
 
-import { Button } from '@/ui/Button'
+import { Button } from '@/ui/index'
 
-import { IProductFields } from '@/shared/interfaces/product.interface'
+import { ICategory, IProductFields } from '@/shared/interfaces'
 
-import { CategoryService } from '@/services/category.service'
+import { CategoryService } from '@/services/index'
 
 export const CategorySelect: FC<{
 	control: Control<IProductFields, any>
@@ -20,6 +20,23 @@ export const CategorySelect: FC<{
 	const { data } = useQuery('categories', async () => {
 		return await CategoryService.getAll()
 	})
+
+	const findCategoryById = (id: number): ICategory | undefined => {
+		if (id == 0) return
+
+		let res = undefined
+
+		data?.map(c => {
+			if (c.id == id) res = c
+			c.children?.map(s => {
+				if (s.id == id) res = s
+				s.children?.map(ss => {
+					if (ss.id == id) res = ss
+				})
+			})
+		})
+		return res
+	}
 
 	const [anchor, setAnchor] = useState<HTMLElement | null>()
 
@@ -43,7 +60,7 @@ export const CategorySelect: FC<{
 				<>
 					<input
 						name={'category.id'}
-						style={{ display: 'none' }}
+						type='hidden'
 						value={value}
 						onChange={onChange}
 						onBlur={onBlur}
@@ -56,7 +73,7 @@ export const CategorySelect: FC<{
 						aria-haspopup={true}
 						onClick={handleButtonClick}
 					>
-						Выберите категорию
+						{value == 0 ? 'Выберите категорию' : findCategoryById(value)?.name}
 					</Button>
 					<Menu anchorEl={anchor} open={open} onClose={handleClose}>
 						{data?.map(category => (

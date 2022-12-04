@@ -1,7 +1,7 @@
 import { isRejectedWithValue } from '@reduxjs/toolkit'
 import { Middleware, MiddlewareAPI } from 'redux'
 
-import { toastrError } from '@/utils/api.utils'
+import { toastrError } from '@/utils/api/api.utils'
 
 export const rtkQueryErrorLogger: Middleware =
 	(api: MiddlewareAPI) => next => action => {
